@@ -1,0 +1,65 @@
+<html>
+<head>
+	<title>Canvas Test</title>
+    <script type="text/javascript" src="http://processingjs.org/js/processing.min.js"></script>
+
+</head>
+<body>
+	<script type="application/processing">
+	void setup() {  
+		size(200,200);
+		frameRate(1000);	
+		smooth();
+	}
+
+   float depth = 0;
+
+	void draw() {
+		//pushMatrix();
+	    //translate(width/2, height/2, -depth);
+	  	//rotateY(frameCount * 0.01);
+	  	//rotateX(frameCount * 0.01);
+		drawClock();
+		//popMatrix();
+	
+    }
+
+	void drawClock() {
+			background(0,0,96);  
+			float radius = 80;
+			int centX = 100;
+			int centY = 100;
+			stroke(255,255,0);
+			noFill();
+			ellipse(100, 100, 7, 7);  
+
+			for (float ang = 0; ang <= 360; ang += 7.5) {    
+				float rad = radians(ang);   
+		        if (ang%30==0) {
+			        strokeWeight(3);  
+					line(centX + (62 * cos(rad)), centY + (62 * sin(rad)), centX + (72 * cos(rad)), centY + (72 * sin(rad)));
+				} else {
+					strokeWeight(1);
+					line(centX + (62 * cos(rad)), centY + (62 * sin(rad)), centX + (67 * cos(rad)), centY + (67 * sin(rad)));	
+				}	
+			}
+
+		    //float ms = map(millis(), 0, 1000, 0, TWO_PI) - HALF_PI;  
+		  	float s = map(second(), 0, 60, 0, TWO_PI) - HALF_PI;  
+		  	float m = map(minute(), 0, 60, 0, TWO_PI) - HALF_PI;  
+		  	float h = map(hour() % 12, 0, 12, 0, TWO_PI) - HALF_PI;  
+		  	stroke(255);
+		    //strokeWeight(0.5);
+		    //line(cos(ms) * 8 + 100, sin(ms) * 8 + 100, cos(ms) * 72 + 100, sin(ms) * 72 + 100);   
+		  	strokeWeight(1);  
+		  	line(cos(s) * 8 + 100, sin(s) * 8 + 100, cos(s) * 72 + 100, sin(s) * 72 + 100);  
+		  	strokeWeight(2);  
+		  	line(cos(m) * 8 + 100, sin(m) * 8 + 100, cos(m) * 60 + 100, sin(m) * 60 + 100);  
+		  	strokeWeight(3);  
+		  	line(cos(h) * 8 + 100, sin(h) * 8 + 100, cos(h) * 50 + 100, sin(h) * 50 + 100);	
+	}
+
+	</script><canvas></canvas>
+	
+</body>
+</html>

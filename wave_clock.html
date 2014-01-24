@@ -1,0 +1,62 @@
+<html>
+<head>
+	<title>Canvas Test</title>
+    <script type="text/javascript" src="http://processingjs.org/js/processing.min.js"></script>
+
+</head>
+<body>
+	<script type="application/processing">
+	import processing.opengl.*;
+
+	int radius = 100;
+
+	void setup() {
+	  size(500, 300, OPENGL);
+	  background(0);
+	  stroke(255);
+	} 
+
+	void draw() {
+	  background(0);
+
+	  translate(width/2, height/2, -frameCount);
+	  
+	  rotateY(frameCount * 0.05);
+	  rotateX(frameCount * 0.03);
+	  
+	  float s = 0;
+	  float t = 0;
+	  float lastx = 0; 
+	  float lasty = 0;
+	  float lastz = 0;
+	  while (t <180) {
+	     s += 30;  
+	     t += 0.3;   
+	     float radianS = radians(s);
+	     float radianT = radians(t);
+
+
+ 		 //for (int y = 0; y <= 20; y+=5) {
+	
+	     	float thisx = 0 + (radius * cos(radianS) * sin(radianT));
+	     	float thisy = 0 + (radius * sin(radianS) * sin(radianT));
+	     	float thisz = 0 + (radius * cos(radianT));
+			//float thisz = 0 + (radius * cos(radianT) * sin(radianT));
+
+	     	if (lastx != 0) {
+	        	point(thisx,thisy, thisz);
+	        	//point(lastx,lasty, lastz);
+				//line(thisx, thisy, thisz, lastx, lasty, lastz);
+	     	}
+		 //}
+	     lastx = thisx; 
+	     lasty = thisy; 
+	     lastz = thisz;
+	  }
+	}
+
+
+	</script><canvas></canvas>
+	
+</body>
+</html>
